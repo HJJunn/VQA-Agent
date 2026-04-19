@@ -22,9 +22,21 @@
 ---
 
 ## 🧩 System Architecture
-Supervisor Agent
-→ Worker Agent (LangGraph)
-→ generate_video → validate_video → generate_questions → generate_script → generate_tts → upload_and_save
+<img width="2304" height="266" alt="image" src="https://github.com/user-attachments/assets/36b2a773-a080-4fcc-ad37-8db401587a08" />
+
+본 시스템은 다음과 같은 선형 및 조건부 로직을 포함하는 상태 머신 구조를 가집니다.
+
+### 1.Generate Video: OpenCV를 이용한 마라톤 시나리오 렌더링.
+
+### 2.Validate Video: 생성된 영상 데이터의 유효성 및 중복 여부 체크.
+
+### 3.Generate Questions: 영상 메타데이터 기반의 VQA 질문 세트 생성 
+
+### 4.Generate Script: 영상 상황에 맞는 해설용 방송 스크립트 생성 (LLM).
+
+### 5.Generate TTS: 스크립트를 음성 파일(.mp3)로 변환 (OpenAI TTS).
+
+### 6.Upload & Save: 결과물을 AWS S3 및 데이터베이스에 영구 저장.
 
 
 ## 🛠️ Tech Stack
@@ -33,20 +45,22 @@ Supervisor Agent
 - Python
 
 ### AI / ML
-- OpenAI API (LLM, TTS)
+- OpenAI GPT-5.4-mini
+- OpenAI TTS
 - LangGraph
-- Hugging Face Transformers
+- LangChain
 - PyTorch
 
 ### Backend
 - FastAPI
 
 ### Infra
+- Docker, Kubernetes (EKS)
 - AWS S3
+- AWS ECR
 
 ### Database
-- PostgreSQL
-- Redis
+- MongoDB
 
 ---
 
@@ -73,19 +87,37 @@ Supervisor Agent
 
 ---
 
-## 📊 Result
+## 🚀 Getting Started
 
-- 영상 + 문제 + 음성 자동 생성 파이프라인 구축
-- 대량 콘텐츠 생성 가능 구조
-- 매크로 대응 인증 시스템 구현
+### Prerequisites
+- Docker & Docker Desktop
+- AWS CLI (ECR access)
+- OpenAI API Key
 
----
+### Installation
+```
+# 레포지토리 클론
+git clone https://github.com/your-username/VQA_AGENT.git
+cd VQA_AGENT
 
-## 💡 Insights
+# 가상환경 구축
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
-- 단순 생성보다 **검증이 더 중요**
-- 멀티 에이전트의 핵심은 **역할 분리**
-- 비용은 모델이 아니라 **재생성에서 발생**
-- 완벽한 탐지보다 **공정성 중심 설계가 중요**
+### Build & Deploy
+```
+# Docker 빌드 (linux/amd64 플랫폼 기준)
+docker build --platform linux/amd64 -t [YOUR_ECR_URL]/on-race-vqa:latest .
 
----
+# ECR 푸시
+aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin [YOUR_ACCOUNT_ID].dkr.ecr.ap-northeast-2.amazonaws.com
+docker push [YOUR_ACCOUNT_ID].dkr.ecr.ap-northeast-2.amazonaws.com/on-race-vqa:latest
+
+# K8s 재배포
+kubectl rollout restart deployment on-race-vqa -n t6-on-race-prod
+```
+
+# UX
+<img width="1324" height="1214" alt="image" src="https://github.com/user-attachments/assets/6eae69fd-886a-4db1-9da7-7ac4b949cf4b" />
