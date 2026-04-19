@@ -26,17 +26,23 @@
 
 본 시스템은 다음과 같은 선형 및 조건부 로직을 포함하는 상태 머신 구조를 가집니다.
 
-### 1.Generate Video: OpenCV를 이용한 마라톤 시나리오 렌더링.
+### 1.Generate Video
+OpenCV를 이용한 마라톤 시나리오 렌더링.
 
-### 2.Validate Video: 생성된 영상 데이터의 유효성 및 중복 여부 체크.
+### 2.Validate Video
+생성된 영상 데이터의 유효성 및 중복 여부 체크.
 
-### 3.Generate Questions: 영상 메타데이터 기반의 VQA 질문 세트 생성 
+### 3.Generate Questions
+영상 메타데이터 기반의 VQA 질문 세트 생성 
 
-### 4.Generate Script: 영상 상황에 맞는 해설용 방송 스크립트 생성 (LLM).
+### 4.Generate Script
+영상 상황에 맞는 해설용 방송 스크립트 생성 (LLM).
 
-### 5.Generate TTS: 스크립트를 음성 파일(.mp3)로 변환 (OpenAI TTS).
+### 5.Generate TTS
+스크립트를 음성 파일(.mp3)로 변환 (OpenAI TTS).
 
-### 6.Upload & Save: 결과물을 AWS S3 및 데이터베이스에 영구 저장.
+### 6.Upload & Save
+결과물을 AWS S3 및 데이터베이스에 영구 저장.
 
 
 ## 🛠️ Tech Stack
@@ -120,4 +126,5 @@ kubectl rollout restart deployment on-race-vqa -n t6-on-race-prod
 ```
 
 # UX
-<img width="1324" height="1214" alt="image" src="https://github.com/user-attachments/assets/6eae69fd-886a-4db1-9da7-7ac4b949cf4b" />
+<img width="1096" height="1128" alt="image" src="https://github.com/user-attachments/assets/eb53883c-e757-4443-8cd0-d7c587bc5573" />
+
