@@ -126,6 +126,7 @@ kubectl rollout restart deployment on-race-vqa -n t6-on-race-prod
 ```
 ---
 ## UX
-<img width="700" height="800" alt="image" src="https://github.com/user-attachments/assets/eb53883c-e757-4443-8cd0-d7c587bc5573" />
+<img width="846" height="952" alt="image" src="https://github.com/user-attachments/assets/a11fc7c2-ced4-432b-b94d-182c949bcf48" />
+
 
 
