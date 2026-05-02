@@ -125,8 +125,18 @@ docker push [YOUR_ACCOUNT_ID].dkr.ecr.ap-northeast-2.amazonaws.com/on-race-vqa:l
 kubectl rollout restart deployment on-race-vqa -n t6-on-race-prod
 ```
 ---
+
+## 🔗 Related Project
+
+본 프로젝트는 팀 프로젝트인  
+👉 https://github.com/HJJunn/On-Race  
+에서 사용된 VQA 인증 시스템을 확장 및 개선한 구현입니다.
+
+---
+
 ## UX
 <img width="634" height="736" alt="image" src="https://github.com/user-attachments/assets/10e3e569-4263-43e4-b788-252bbf093995" />
+
 
 
 
